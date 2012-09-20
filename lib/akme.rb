@@ -3,9 +3,9 @@ require 'digest/md5'
 require 'uri'
 
 module Akme
-
-  module ViewHelpers
-    def akme(options={})
+  
+  class Header
+    def self.render(options={})
       
       # Options
       options[:gravatar_default] ||= "http://assets.heroku.com.s3.amazonaws.com/addons.heroku.com/gravatar_default.png"
@@ -43,9 +43,9 @@ module Akme
         name, url = link
         
         # Give the link a class of 'active' if its domain matches the current URL
-        css = current_site_matches?(link) ? "active" : ""
+        css = Akme::Helper.current_site_matches?(link) ? "active" : ""
         
-        "<a href='#{url}' class='#{css}'>#{name}</a>"
+        "<li><a href='#{url}' class='#{css}'>#{name}</a></li>"
       end.join("\n")
       
       # Prepare the HTML output
@@ -64,7 +64,12 @@ module Akme
       out.respond_to?(:html_safe) ? out.html_safe : out
     end
     
-    def current_site_matches?(search_string_or_url, request_object=nil)
+    
+  end
+  
+  class Helper
+
+    def self.current_site_matches?(search_string_or_url, request_object=nil)
       # Allow request object to be mocked, for testing purposes
       request ||= request_object
       return false unless request
@@ -77,12 +82,13 @@ module Akme
       false
     end
 
-    def extract_domain(string)
+    def self.extract_domain(string)
       string =~ (/^(?:\w+:\/\/)?([^\/?]+)(?:\/|\?|$)/) ? $1 : string
     end
     
   end
   
+  
 end
 
-ActionView::Base.send :include, Akme::ViewHelpers if defined?(ActionView)
+# ActionView::Base.send :include, Akme::ViewHelpers if defined?(ActionView)

@@ -1,7 +1,7 @@
 Akme
 ====
 
-the ruby gem for heroku's new site header
+Akme is the ruby gem for heroku's new site header.
 
 Installation
 ------------
@@ -17,8 +17,29 @@ And then execute:
 Or install it yourself as:
 
     $ gem install akme
-    
-    
+
+Usage
+-----
+
+Drop this helper in your layout:
+
+```haml
+= Akme::Header.render(options={})
+```
+
+Header Options and their Defaults
+
+```ruby
+{
+  gravatar_default: "http://assets.heroku.com.s3.amazonaws.com/addons.heroku.com/gravatar_default.png",
+  logo_text: "Heroku",
+  logo_url: "https://www.heroku.com",
+  user: nil,
+  login_path: nil,
+  logout_path: nil,
+}
+```
+
 Spec
 ----
 
@@ -42,10 +63,6 @@ Here's what it does so far:
         pulls the domain out of a URL string
         returns the original string if it doesn't contain a domain
 
-Usage
------
-
-Coming soon
 
 ## Contributing
 
