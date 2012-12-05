@@ -54,7 +54,7 @@ module Akme
           "?default=",
           URI.escape(options[:gravatar_default])
         ].join("")
-        links << [gravatar_default, 'https://dashboard.heroku.com/account']
+        links << [gravatar_url, 'https://dashboard.heroku.com/account']
       end
       
       links << ['Login', options[:login_path]] if options[:login_path] && options[:current_user].nil?
