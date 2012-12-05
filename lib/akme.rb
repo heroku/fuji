@@ -29,7 +29,7 @@ module Akme
     def self.render(options={})
       
       # Options
-      options[:gravatar_default] ||= "http://assets.heroku.com.s3.amazonaws.com/addons.heroku.com/gravatar_default.png"
+      options[:gravatar_fallback_url] ||= "http://assets.heroku.com.s3.amazonaws.com/addons.heroku.com/gravatar_default.png"
       options[:logo_text] ||= "Heroku"
       options[:logo_url] ||= "https://www.heroku.com"
       options[:user] ||= nil
@@ -52,9 +52,9 @@ module Akme
           "https://secure.gravatar.com/avatar/",
           Digest::MD5.hexdigest(options[:user].email),
           "?default=",
-          URI.escape(options[:gravatar_default])
+          URI.escape(options[:gravatar_fallback_url])
         ].join("")
-        links << [gravatar_default, 'https://dashboard.heroku.com/account']
+        links << [gravatar_url, 'https://dashboard.heroku.com/account']
       end
       
       links << ['Login', options[:login_path]] if options[:login_path] && options[:current_user].nil?
