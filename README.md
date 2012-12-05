@@ -65,11 +65,11 @@ Here's what it does so far:
         pulls the domain out of a URL string
         returns the original string if it doesn't contain a domain
 
-
 ## Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+3. Write tested code and make sure tests pass (`bundle exec rake spec`)
+4. Commit your changes (`git commit -am 'Add a tested feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request

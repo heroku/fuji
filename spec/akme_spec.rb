@@ -1,11 +1,22 @@
 require 'spec_helper'
+require 'digest/md5'
 
 describe Akme::Header do
   
   describe "akme" do
+    before do
+      @user = OpenStruct.new(email: "bob@heroku.com")
+    end
     
     it "outputs an HTML string" do
       Akme::Header.render.should match /div id='akme'/
+    end
+
+    it "renders the user's avatar" do
+      h = Akme::Header.render(user: @user)
+      hash = Digest::MD5.hexdigest(@user.email)
+
+      h.should match /#{hash}/
     end
     
   end
@@ -20,7 +31,6 @@ describe Akme::Header do
       it "detects search string" do
         Akme::Helper.current_site_matches?('dhh.com/foo', @request).should == true
       end
-
       
       it "doesn't detect search string" do
         Akme::Helper.current_site_matches?('some other shit', @request).should == false
