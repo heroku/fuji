@@ -1,7 +1,9 @@
-Akme
+Akme (ακμή)
 ====
 
 Akme is the ruby gem for heroku's new site header.
+
+Acme means "the top or highest point". The _acme_ gem name was taken, so I rolled with the Greek variant.
 
 Installation
 ------------

@@ -1,9 +1,30 @@
 require "akme/version"
 require 'digest/md5'
 require 'uri'
+require "compass"
+
+# module Foo
+# 
+#   module Header
+#     def render
+#       puts "rendered!"
+#     end
+#   end
+#   extend Header
+#   
+# end
 
 module Akme
-  
+
+  def self.render
+    ::Header.render
+  end
+
+  class Style
+    base_directory  = File.join(File.dirname(__FILE__), '..')
+    Compass::Frameworks.register('akme', :path => base_directory)
+  end
+
   class Header
     def self.render(options={})
       
@@ -87,7 +108,6 @@ module Akme
     end
     
   end
-  
   
 end
 

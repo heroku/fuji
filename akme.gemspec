@@ -2,7 +2,7 @@
 require File.expand_path('../lib/akme/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["zeke"]
+  gem.authors       = ["Zeke Sikelianos"]
   gem.email         = ["zeke@sikelianos.com"]
   gem.description   = %q{heroku's new site header}
   gem.summary       = %q{heroku's new site header}
@@ -14,6 +14,10 @@ Gem::Specification.new do |gem|
   gem.name          = "akme"
   gem.require_paths = ["lib"]
   gem.version       = Akme::VERSION
-  
+
   gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'rake'
+  
+  gem.add_dependency "compass"
+  gem.add_dependency "sass"
 end
