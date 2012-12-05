@@ -42,8 +42,8 @@ module Akme
       links << ['Pricing', 'https://www.heroku.com/pricing'] unless options[:user]
       links << ['Apps', 'https://dashboard.heroku.com']
       links << ['Addons', 'https://addons.heroku.com']
-      links << ['Dev Center', 'https://devcenter.heroku.com']
-      links << ['Help', 'https://help.heroku.com']
+      links << ['Documentation', 'https://devcenter.heroku.com']
+      links << ['Support', 'https://help.heroku.com']
       links << ['Logout', options[:logout_path]] if options[:user] && options[:logout_path]
       
       # Gravatar
@@ -54,7 +54,7 @@ module Akme
           "?default=",
           URI.escape(options[:gravatar_fallback_url])
         ].join("")
-        links << [gravatar_url, 'https://dashboard.heroku.com/account']
+        links << [Akme::Helper.image_tag(gravatar_url), 'https://dashboard.heroku.com/account']
       end
       
       links << ['Login', options[:login_path]] if options[:login_path] && options[:current_user].nil?
@@ -62,11 +62,7 @@ module Akme
       # Join links together
       links = links.map do |link|
         name, url = link
-        
-        # Give the link a class of 'active' if its domain matches the current URL
-        css = Akme::Helper.current_site_matches?(link) ? "active" : ""
-        
-        "<li><a href='#{url}' class='#{css}'>#{name}</a></li>"
+        Akme::Helper.link_to(name, url)
       end.join("\n")
       
       # Prepare the HTML output
@@ -84,8 +80,7 @@ module Akme
       # If we're in Rails, make it HTML safe
       out.respond_to?(:html_safe) ? out.html_safe : out
     end
-    
-    
+
   end
   
   class Helper
@@ -105,6 +100,16 @@ module Akme
 
     def self.extract_domain(string)
       string =~ (/^(?:\w+:\/\/)?([^\/?]+)(?:\/|\?|$)/) ? $1 : string
+    end
+    
+    def self.link_to(name, url)
+      # Give the link a class of 'active' if its domain matches the current URL
+      css = Akme::Helper.current_site_matches?(url) ? "active" : ""
+      "<li><a href='#{url}' class='#{css}'>#{name}</a></li>"
+    end
+    
+    def self.image_tag(url)
+      "<img src='#{url}'>"
     end
     
   end
