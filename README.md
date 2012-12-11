@@ -24,13 +24,20 @@ The render method accepts the following options:
 
 ```ruby
 {
-  gravatar_default: "http://assets.heroku.com.s3.amazonaws.com/addons.heroku.com/gravatar_default.png",
-  logo_text: "heroku",
-  logo_url: "https://www.heroku.com",
   user: nil,
+  logo_text: "heroku",
+  logo_subtext: nil
+  logo_url: "https://www.heroku.com",
   login_path: nil,
   logout_path: nil,
+  gravatar_fallback_url: "http://assets.heroku.com.s3.amazonaws.com/addons.heroku.com/gravatar_default.png",
 }
+```
+
+Here's how it looks in addons:
+
+```haml
+= Fuji::Header.render(user: current_user, logo_subtext: "addons", login_path: login_path, logout_path: logout_path)
 ```
 
 Style it up by importing the fuji partial into your main sass/scss stylesheet

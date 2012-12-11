@@ -20,7 +20,7 @@ module Fuji
     ::Header.render
   end
 
-  # This makes an _fuji.sass partial available to your app.
+  # This makes a sass partial available to your app: @import "fuji"
   class Style
     base_directory  = File.join(File.dirname(__FILE__), '..')
     Compass::Frameworks.register('fuji', :path => base_directory)
@@ -32,6 +32,7 @@ module Fuji
       # Options
       options[:gravatar_fallback_url] ||= "http://assets.heroku.com.s3.amazonaws.com/addons.heroku.com/gravatar_default.png"
       options[:logo_text] ||= "heroku"
+      options[:logo_subtext] ||= nil
       options[:logo_url] ||= "https://www.heroku.com"
       options[:user] ||= nil
       options[:login_path] ||= nil
@@ -51,7 +52,7 @@ module Fuji
       links << {id: :support, name: 'Support', url: 'https://help.heroku.com'}
       
       if options[:user] && options[:logout_path]
-        links << {id: :logout, name: 'Logout', url: options[:logout_path]}
+        links << {id: :logout, name: 'Log out', url: options[:logout_path]}
       end
       
       # Gravatar
@@ -69,8 +70,8 @@ module Fuji
         }
       end
       
-      if options[:login_path] && options[:current_user].nil?
-        links << {id: :login, name: 'Login', url: options[:login_path]}
+      if options[:login_path] && options[:user].nil?
+        links << {id: :login, name: 'Log in', url: options[:login_path]}
       end
 
       # Join links together
@@ -83,7 +84,9 @@ module Fuji
         <div id='fuji' class='fuji'>
           <div class='container'>
             <h1>
-              <a href='#{options[:logo_url]}'>#{options[:logo_text]}</a>
+              <a href='#{options[:logo_url]}'>
+                #{options[:logo_text]}<span>#{options[:logo_subtext]}</span>
+              </a>
             </h1>
             <ul>#{links}</ul>
           </div>

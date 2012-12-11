@@ -1,11 +1,15 @@
-// Config
+// Configurable Config
 $fuji-foreground-color: #FFF !default
 $fuji-text-color: rgba(#FFF, 1) !default
 $fuji-highlight-color: #aed582 !default
 $fuji-max-width: 960px !default
-$fuji-line-edge-color: rgba($fuji-foreground-color, 0) !default
-$fuji-line-middle-color: rgba($fuji-foreground-color, 0.1) !default
-$fuji-line-size: 40% !default
+$fuji-logo-text-color: rgba($fuji-highlight_color, 0.4) !default
+$fuji-logo-subtext-color: rgba($fuji-highlight_color, 0.7) !default
+
+// Immutable Config
+$fuji-line-edge-color: rgba($fuji-foreground-color, 0)
+$fuji-line-middle-color: rgba($fuji-foreground-color, 0.1)
+$fuji-line-size: 40%
 
 #fuji
   +transition(all 0.5s false 0s)
@@ -29,8 +33,17 @@ $fuji-line-size: 40% !default
       +transition(all 0.3s false 0s)
       max-width: 300px
       overflow: hidden
+      font:
+        family: hybrea, corbel, 'helvetica neue', helvetica, arial
+        size: 20px
+        weight: normal
+      color: $fuji-logo-text-color
+      line-height: 36px
       span
-        display: none
+        display: inline-block
+        color: $fuji-logo-subtext-color
+        padding-left: 4px
+
 
   ul
     list-style: none
