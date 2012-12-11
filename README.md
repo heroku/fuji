@@ -3,7 +3,7 @@ Fuji
 
 Fuji is a ruby gem for rendering and styling Heroku's global header and nav.
 
-The only dependencies are Sass and Compass, so you can use it with Rails or Sinatra.
+Its only dependencies are Sass and Compass, so you can use it with Rails or Sinatra.
 
 Usage
 -----
@@ -34,20 +34,22 @@ The render method accepts the following options:
 }
 ```
 
-Here's how it looks in addons:
+Here's how it's done in addons:
 
 ```haml
 = Fuji::Header.render(user: current_user, logo_subtext: "addons", login_path: login_path, logout_path: logout_path)
 ```
 
-Style it up by importing the fuji partial into your main sass/scss stylesheet
+Style it up by importing the fuji partial into your sass/scss stylesheet:
 
 ```sass
-// Override defaults if you wish:
+// Override the defaults if you wish:
 $fuji-foreground-color: #FFF
 $fuji-text-color: rgba(#FFF, 1)
-$fuji-highlight-color: #FFF
+$fuji-highlight-color: #aed582
 $fuji-max-width: 960px
+$fuji-logo-text-color: rgba($fuji-highlight_color, 0.4)
+$fuji-logo-subtext-color: rgba($fuji-highlight_color, 0.7)
 
 @import "fuji"
 ```
