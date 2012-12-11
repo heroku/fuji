@@ -20,6 +20,7 @@ module Akme
     ::Header.render
   end
 
+  # This makes an _akme.sass partial available to your app.
   class Style
     base_directory  = File.join(File.dirname(__FILE__), '..')
     Compass::Frameworks.register('akme', :path => base_directory)
@@ -30,21 +31,28 @@ module Akme
       
       # Options
       options[:gravatar_fallback_url] ||= "http://assets.heroku.com.s3.amazonaws.com/addons.heroku.com/gravatar_default.png"
-      options[:logo_text] ||= "Heroku"
+      options[:logo_text] ||= "heroku"
       options[:logo_url] ||= "https://www.heroku.com"
       options[:user] ||= nil
       options[:login_path] ||= nil
       options[:logout_path] ||= nil
-      
-      # Build link names and URLs
+      options[:links] ||= nil
+            
       links = []
-      links << ['How it Works', 'https://heroku.com/how'] unless options[:user]
-      links << ['Pricing', 'https://www.heroku.com/pricing'] unless options[:user]
-      links << ['Apps', 'https://dashboard.heroku.com']
-      links << ['Addons', 'https://addons.heroku.com']
-      links << ['Documentation', 'https://devcenter.heroku.com']
-      links << ['Support', 'https://help.heroku.com']
-      links << ['Logout', options[:logout_path]] if options[:user] && options[:logout_path]
+      
+      unless options[:user]
+        links << {id: :how, name: 'How it Works', url: 'https://heroku.com/how'}
+        links << {id: :pricing, name: 'Pricing', url: 'https://www.heroku.com/pricing'}
+      end
+      
+      links << {id: :apps, name: 'Apps', url: 'https://dashboard.heroku.com'}
+      links << {id: :addons, name: 'Addons', url: 'https://addons.heroku.com'}
+      links << {id: :documentation, name: 'Documentation', url: 'https://devcenter.heroku.com'}
+      links << {id: :support, name: 'Support', url: 'https://help.heroku.com'}
+      
+      if options[:user] && options[:logout_path]
+        links << {id: :logout, name: 'Logout', url: options[:logout_path]}
+      end
       
       # Gravatar
       if options[:user] && options[:user].email
@@ -54,20 +62,25 @@ module Akme
           "?default=",
           URI.escape(options[:gravatar_fallback_url])
         ].join("")
-        links << [Akme::Helper.image_tag(gravatar_url), 'https://dashboard.heroku.com/account']
+        links << {
+          id: :gravatar, 
+          name: Akme::Helper.image_tag(gravatar_url), 
+          url: 'https://dashboard.heroku.com/account'
+        }
       end
       
-      links << ['Login', options[:login_path]] if options[:login_path] && options[:current_user].nil?
+      if options[:login_path] && options[:current_user].nil?
+        links << {id: :login, name: 'Login', url: options[:login_path]}
+      end
 
       # Join links together
       links = links.map do |link|
-        name, url = link
-        Akme::Helper.link_to(name, url)
+        Akme::Helper.link_to(link[:name], link[:url], link[:id])
       end.join("\n")
       
       # Prepare the HTML output
       out = "
-        <div id='akme'>
+        <div id='akme' class='akme'>
           <div class='container'>
             <h1>
               <a href='#{options[:logo_url]}'>#{options[:logo_text]}</a>
@@ -80,6 +93,9 @@ module Akme
       # If we're in Rails, make it HTML safe
       out.respond_to?(:html_safe) ? out.html_safe : out
     end
+    
+    # def self.default_links(options={})
+    # end
 
   end
   
@@ -102,9 +118,8 @@ module Akme
       string =~ (/^(?:\w+:\/\/)?([^\/?]+)(?:\/|\?|$)/) ? $1 : string
     end
     
-    def self.link_to(name, url)
-      # Give the link a class of 'active' if its domain matches the current URL
-      css = Akme::Helper.current_site_matches?(url) ? "active" : ""
+    def self.link_to(name, url, css="")
+      css << " active" if Akme::Helper.current_site_matches?(url)
       "<li><a href='#{url}' class='#{css}'>#{name}</a></li>"
     end
     

@@ -1,9 +1,9 @@
 Akme (ακμή)
-====
+===========
 
 Akme is the ruby gem for heroku's new site header.
 
-Acme means "the top or highest point". The _acme_ gem name was taken, so I rolled with the Greek variant.
+Acme means "the top or highest point". The _acme_ gem name was taken, so we're rolling with the Greek variant.
 
 Installation
 ------------
@@ -26,20 +26,32 @@ Usage
 Drop this helper in your layout:
 
 ```haml
-= Akme::Header.render(options={})
+= Akme::Header.render
 ```
 
-Header Options and their Defaults
+The render method accepts the following options:
 
 ```ruby
 {
   gravatar_default: "http://assets.heroku.com.s3.amazonaws.com/addons.heroku.com/gravatar_default.png",
-  logo_text: "Heroku",
+  logo_text: "heroku",
   logo_url: "https://www.heroku.com",
   user: nil,
   login_path: nil,
   logout_path: nil,
 }
+```
+
+Style it up by importing the akme partial into your main sass/scss stylesheet
+
+```sass
+// Override defaults if you wish:
+$akme-foreground-color: #FFF
+$akme-text-color: rgba(#FFF, 1)
+$akme-highlight-color: #FFF
+$akme-max-width: 960px
+
+@import "akme"
 ```
 
 Spec

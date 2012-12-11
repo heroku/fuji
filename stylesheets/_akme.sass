@@ -1,2 +1,69 @@
+// Config
+$akme-foreground-color: #FFF !default
+$akme-text-color: rgba(#FFF, 1) !default
+$akme-highlight-color: #aed582 !default
+$akme-max-width: 960px !default
+$akme-line-edge-color: rgba($akme-foreground-color, 0) !default
+$akme-line-middle-color: rgba($akme-foreground-color, 0.1) !default
+$akme-line-size: 40% !default
+
 #akme
-  background-color: red
+  +transition(all 0.5s false 0s)
+  float: none
+  overflow: hidden
+  margin-bottom: 20px
+  padding: 14px 0
+
+  .container
+    margin-left: auto
+    margin-right: auto
+    position: relative
+    min-width: 320px
+    max-width: $akme-max-width
+    
+  h1
+    float: left
+    margin: 0
+    padding: 0
+    a
+      +transition(all 0.3s false 0s)
+      max-width: 300px
+      overflow: hidden
+      span
+        display: none
+
+  ul
+    list-style: none
+    margin: 4px 0 0 0
+    padding: 0
+    float: right
+    max-width: 600px
+    > li
+      float: left
+      +background-image(linear-gradient(top, $akme-line-edge-color, $akme-line-middle-color $akme-line-size, $akme-line-middle-color (100% - $akme-line-size), $akme-line-edge-color))
+      background-position: left center
+      background-repeat: no-repeat
+      background-size: 1px 100%      
+      font-size: 13px
+      a
+        +transition(all 0.3s false 0s)
+        color: rgba($akme-text-color, 0.5)
+        display: block
+        padding: 7px 15px
+        text-decoration: none
+        &:hover, &.active
+          text-decoration: underline
+          color: $akme-highlight-color
+        &.em
+          color: rgba($akme-text-color, 1)
+          
+        &.gravatar
+          padding: 0 0 0 15px
+          img
+            display: block
+            width: 32px
+            height: 32px
+            +border-radius(16px)
+
+      &:first-child
+        background: none
