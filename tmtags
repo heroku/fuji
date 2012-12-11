@@ -1,0 +1,24 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	Development	//
+"Fuji	/Users/zeke/Projects/hero/fuji/spec/fuji_spec.rb	/^  describe "Fuji::Helper.current_site_matches?" do$/;"	describe	line:24
+"fuji" do	/Users/zeke/Projects/hero/fuji/spec/fuji_spec.rb	/^  describe "fuji" do$/;"	describe	line:6
+"extract_domain" do	/Users/zeke/Projects/hero/fuji/spec/fuji_spec.rb	/^  describe "extract_domain" do$/;"	describe	line:79
+"in any kind of ruby app" do	/Users/zeke/Projects/hero/fuji/spec/fuji_spec.rb	/^    describe "in any kind of ruby app" do$/;"	describe	line:57
+"inside a rails app" do	/Users/zeke/Projects/hero/fuji/spec/fuji_spec.rb	/^    describe "inside a rails app" do$/;"	describe	line:26
+"inside a sinatra app" do	/Users/zeke/Projects/hero/fuji/spec/fuji_spec.rb	/^    describe "inside a sinatra app" do$/;"	describe	line:41
+Fuji	/Users/zeke/Projects/hero/fuji/lib/fuji.rb	/^module Fuji$/;"	module	line:17
+Fuji	/Users/zeke/Projects/hero/fuji/lib/fuji/version.rb	/^module Fuji$/;"	module	line:1
+Fuji	/Users/zeke/Projects/hero/fuji/spec/fuji_spec.rb	/^describe Fuji::Header do$/;"	describe	line:4
+Header	/Users/zeke/Projects/hero/fuji/lib/fuji.rb	/^  class Header$/;"	class	line:29
+Helper	/Users/zeke/Projects/hero/fuji/lib/fuji.rb	/^  class Helper$/;"	class	line:102
+Style	/Users/zeke/Projects/hero/fuji/lib/fuji.rb	/^  class Style$/;"	class	line:24
+current_site_matches	/Users/zeke/Projects/hero/fuji/lib/fuji.rb	/^    def self.current_site_matches?(search_string_or_url, request_object=nil)$/;"	singleton method	line:104
+extract_domain	/Users/zeke/Projects/hero/fuji/lib/fuji.rb	/^    def self.extract_domain(string)$/;"	singleton method	line:117
+image_tag	/Users/zeke/Projects/hero/fuji/lib/fuji.rb	/^    def self.image_tag(url)$/;"	singleton method	line:126
+link_to	/Users/zeke/Projects/hero/fuji/lib/fuji.rb	/^    def self.link_to(name, url, css="")$/;"	singleton method	line:121
+render	/Users/zeke/Projects/hero/fuji/lib/fuji.rb	/^    def self.render(options={})$/;"	singleton method	line:30
+render	/Users/zeke/Projects/hero/fuji/lib/fuji.rb	/^  def self.render$/;"	singleton method	line:19

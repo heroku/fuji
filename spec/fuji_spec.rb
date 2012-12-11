@@ -1,19 +1,19 @@
 require 'spec_helper'
 require 'digest/md5'
 
-describe Akme::Header do
+describe Fuji::Header do
   
-  describe "akme" do
+  describe "fuji" do
     before do
       @user = OpenStruct.new(email: "bob@heroku.com")
     end
     
     it "outputs an HTML string" do
-      Akme::Header.render.should match /div id='akme'/
+      Fuji::Header.render.should match /div id='fuji'/
     end
 
     it "renders the user's avatar" do
-      h = Akme::Header.render(user: @user)
+      h = Fuji::Header.render(user: @user)
       hash = Digest::MD5.hexdigest(@user.email)
 
       h.should match /#{hash}/
@@ -21,7 +21,7 @@ describe Akme::Header do
     
   end
   
-  describe "Akme::Helper.current_site_matches?" do
+  describe "Fuji::Helper.current_site_matches?" do
         
     describe "inside a rails app" do
       before do
@@ -29,11 +29,11 @@ describe Akme::Header do
       end
       
       it "detects search string" do
-        Akme::Helper.current_site_matches?('dhh.com/foo', @request).should == true
+        Fuji::Helper.current_site_matches?('dhh.com/foo', @request).should == true
       end
       
       it "doesn't detect search string" do
-        Akme::Helper.current_site_matches?('some other shit', @request).should == false
+        Fuji::Helper.current_site_matches?('some other shit', @request).should == false
       end
             
     end
@@ -45,11 +45,11 @@ describe Akme::Header do
       end
       
       it "detects search string" do
-        Akme::Helper.current_site_matches?('mizerany', @request).should == true
+        Fuji::Helper.current_site_matches?('mizerany', @request).should == true
       end
       
       it "doesn't detect search string" do
-        Akme::Helper.current_site_matches?('some other blake', @request).should == false
+        Fuji::Helper.current_site_matches?('some other blake', @request).should == false
       end
       
     end
@@ -61,15 +61,15 @@ describe Akme::Header do
       end
       
       it "allows a symbol as a search string" do
-        Akme::Helper.current_site_matches?(:rest, @request).should == true
+        Fuji::Helper.current_site_matches?(:rest, @request).should == true
       end
       
       it "matches against domain name when given a full URL" do
-        Akme::Helper.current_site_matches?("http://the-rest.com/extra/mojo", @request).should == true
+        Fuji::Helper.current_site_matches?("http://the-rest.com/extra/mojo", @request).should == true
       end
       
       it "returns false if request object is nil" do
-        Akme::Helper.current_site_matches?('foo').should == false
+        Fuji::Helper.current_site_matches?('foo').should == false
       end
       
     end
@@ -79,11 +79,11 @@ describe Akme::Header do
   describe "extract_domain" do
     
     it "pulls the domain out of a URL string" do
-      Akme::Helper.extract_domain("https://dweeb-fest.example.com/sho/biz").should == "dweeb-fest.example.com"
+      Fuji::Helper.extract_domain("https://dweeb-fest.example.com/sho/biz").should == "dweeb-fest.example.com"
     end
     
     it "returns the original string if it doesn't contain a domain" do
-      Akme::Helper.extract_domain("turkey jerky").should == "turkey jerky"
+      Fuji::Helper.extract_domain("turkey jerky").should == "turkey jerky"
     end
     
   end

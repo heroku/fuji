@@ -1,4 +1,4 @@
-require "akme/version"
+require "fuji/version"
 require 'digest/md5'
 require 'uri'
 require "compass"
@@ -14,16 +14,16 @@ require "compass"
 #   
 # end
 
-module Akme
+module Fuji
 
   def self.render
     ::Header.render
   end
 
-  # This makes an _akme.sass partial available to your app.
+  # This makes an _fuji.sass partial available to your app.
   class Style
     base_directory  = File.join(File.dirname(__FILE__), '..')
-    Compass::Frameworks.register('akme', :path => base_directory)
+    Compass::Frameworks.register('fuji', :path => base_directory)
   end
 
   class Header
@@ -64,7 +64,7 @@ module Akme
         ].join("")
         links << {
           id: :gravatar, 
-          name: Akme::Helper.image_tag(gravatar_url), 
+          name: Fuji::Helper.image_tag(gravatar_url), 
           url: 'https://dashboard.heroku.com/account'
         }
       end
@@ -75,12 +75,12 @@ module Akme
 
       # Join links together
       links = links.map do |link|
-        Akme::Helper.link_to(link[:name], link[:url], link[:id])
+        Fuji::Helper.link_to(link[:name], link[:url], link[:id])
       end.join("\n")
       
       # Prepare the HTML output
       out = "
-        <div id='akme' class='akme'>
+        <div id='fuji' class='fuji'>
           <div class='container'>
             <h1>
               <a href='#{options[:logo_url]}'>#{options[:logo_text]}</a>
@@ -119,7 +119,7 @@ module Akme
     end
     
     def self.link_to(name, url, css="")
-      css << " active" if Akme::Helper.current_site_matches?(url)
+      css << " active" if Fuji::Helper.current_site_matches?(url)
       "<li><a href='#{url}' class='#{css}'>#{name}</a></li>"
     end
     
@@ -131,4 +131,4 @@ module Akme
   
 end
 
-# ActionView::Base.send :include, Akme::ViewHelpers if defined?(ActionView)
+# ActionView::Base.send :include, Fuji::ViewHelpers if defined?(ActionView)

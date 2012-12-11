@@ -1,32 +1,23 @@
-Akme (ακμή)
-===========
+Fuji
+====
 
-Akme is the ruby gem for heroku's new site header.
+Fuji is a ruby gem for rendering and styling Heroku's global header and nav.
 
-Acme means "the top or highest point". The _acme_ gem name was taken, so we're rolling with the Greek variant.
-
-Installation
-------------
-
-Add this line to your application's Gemfile:
-
-    gem 'akme'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install akme
+The only dependencies are Sass and Compass, so you can use it with Rails or Sinatra.
 
 Usage
 -----
 
-Drop this helper in your layout:
+Add fuji to your application's Gemfile:
+
+```ruby
+gem 'fuji'
+```
+
+Render the header in your application layout:
 
 ```haml
-= Akme::Header.render
+= Fuji::Header.render
 ```
 
 The render method accepts the following options:
@@ -42,46 +33,22 @@ The render method accepts the following options:
 }
 ```
 
-Style it up by importing the akme partial into your main sass/scss stylesheet
+Style it up by importing the fuji partial into your main sass/scss stylesheet
 
 ```sass
 // Override defaults if you wish:
-$akme-foreground-color: #FFF
-$akme-text-color: rgba(#FFF, 1)
-$akme-highlight-color: #FFF
-$akme-max-width: 960px
+$fuji-foreground-color: #FFF
+$fuji-text-color: rgba(#FFF, 1)
+$fuji-highlight-color: #FFF
+$fuji-max-width: 960px
 
-@import "akme"
+@import "fuji"
 ```
-
-Spec
-----
-
-Here's what it does so far:
-
-    Akme
-      akme
-        outputs an HTML string
-      current_site_matches?
-        inside a rails app
-          detects search string
-          doesn't detect search string
-        inside a sinatra app
-          detects search string
-          doesn't detect search string
-        in any kind of ruby app
-          allows a symbol as a search string
-          matches against domain name when given a full URL
-          returns false if request object is nil
-      extract_domain
-        pulls the domain out of a URL string
-        returns the original string if it doesn't contain a domain
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Write tested code and make sure tests pass (`bundle exec rake spec`)
-4. Commit your changes (`git commit -am 'Add a tested feature'`)
-5. Push to the branch (`git push origin my-new-feature`)
-6. Create new Pull Request
+See CONTRIBUTING.md
+
+## License
+
+MIT. Go nuts.

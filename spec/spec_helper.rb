@@ -1,9 +1,9 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'akme'
+require 'fuji'
 require 'ostruct'
 
-include Akme
+include Fuji
 
 RSpec.configure do |config|
   # some (optional) config here
