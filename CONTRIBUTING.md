@@ -1,4 +1,4 @@
-We love pull requests. Here's a quick guide:
+We love pull requests! Here's a quick guide:
 
 1. Fork the repo.
 1. Run the tests: `bundle && rake`
