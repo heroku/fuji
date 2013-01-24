@@ -30,7 +30,7 @@ module Fuji
     def self.render(options={})
       
       # Options
-      options[:gravatar_fallback_url] ||= "http://assets.heroku.com.s3.amazonaws.com/addons.heroku.com/gravatar_default.png"
+      options[:gravatar_fallback_url] ||= "https://s3.amazonaws.com/assets.heroku.com/addons.heroku.com/gravatar_default.png"
       options[:logo_text] ||= "heroku"
       options[:logo_subtext] ||= nil
       options[:logo_url] ||= "https://www.heroku.com"
