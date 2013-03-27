@@ -47,7 +47,7 @@ module Fuji
       end
       
       links << {id: :apps, name: 'Apps', url: 'https://dashboard.heroku.com'}
-      links << {id: :addons, name: 'Addons', url: 'https://addons.heroku.com'}
+      links << {id: :addons, name: 'Add-ons', url: 'https://addons.heroku.com'}
       links << {id: :documentation, name: 'Documentation', url: 'https://devcenter.heroku.com'}
       links << {id: :support, name: 'Support', url: 'https://help.heroku.com'}
       
