@@ -3,8 +3,11 @@ $fuji-foreground-color: #FFF !default
 $fuji-text-color: rgba(#FFF, 1) !default
 $fuji-highlight-color: #aed582 !default
 $fuji-max-width: 960px !default
-$fuji-logo-text-color: rgba($fuji-highlight_color, 0.4) !default
-$fuji-logo-subtext-color: rgba($fuji-highlight_color, 0.7) !default
+$fuji-logo-text-color: rgba($fuji-highlight-color, 0.4) !default
+$fuji-logo-subtext-color: rgba($fuji-highlight-color, 0.7) !default
+$fuji-link-color-inactive: rgba($fuji-text-color, 0.5) !default
+$fuji-link-color-active: rgba($highlight-color, 1) !default
+$fuji-font-size: inherit !default
 
 // Immutable Config
 $fuji-line-edge-color: rgba($fuji-foreground-color, 0)
@@ -12,7 +15,7 @@ $fuji-line-middle-color: rgba($fuji-foreground-color, 0.1)
 $fuji-line-size: 40%
 
 #fuji
-  +transition(all 0.5s false 0s)
+  +transition(all 0.2s false 0s)
   float: none
   overflow: hidden
   margin-bottom: 20px
@@ -24,7 +27,7 @@ $fuji-line-size: 40%
     position: relative
     min-width: 320px
     max-width: $fuji-max-width
-    
+
   h1
     float: left
     margin: 0
@@ -39,37 +42,39 @@ $fuji-line-size: 40%
         weight: normal
       color: $fuji-logo-text-color
       line-height: 36px
+      text-decoration: none
       span
         display: inline-block
         color: $fuji-logo-subtext-color
         padding-left: 4px
-
 
   ul
     list-style: none
     margin: 4px 0 0 0
     padding: 0
     float: right
-    max-width: 600px
+    max-width: 700px
     > li
       float: left
       +background-image(linear-gradient(top, $fuji-line-edge-color, $fuji-line-middle-color $fuji-line-size, $fuji-line-middle-color (100% - $fuji-line-size), $fuji-line-edge-color))
       background-position: left center
       background-repeat: no-repeat
-      background-size: 1px 100%      
-      font-size: 13px
+      background-size: 1px 100%
+      font-size: $fuji-font-size
+      margin: 0
+      padding: 0
       a
-        +transition(all 0.3s false 0s)
-        color: rgba($fuji-text-color, 0.5)
+        +transition(all 0.2s false 0s)
+        color: $fuji-link-color-inactive
         display: block
         padding: 7px 15px
         text-decoration: none
         &:hover, &.active
           text-decoration: underline
-          color: $fuji-highlight-color
+          color: $fuji-link-color-inactive
         &.em
           color: rgba($fuji-text-color, 1)
-          
+
         &.gravatar
           padding: 0 0 0 15px
           img
