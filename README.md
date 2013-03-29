@@ -14,7 +14,8 @@ Add fuji to your application's Gemfile:
 gem 'fuji'
 ```
 
-Render the header in your application layout:
+$fuji-heading-font-size: 24px
+$fuji-nav-font-size: inherit
 
 ```haml
 = Fuji::Header.render
@@ -45,14 +46,16 @@ Style it up by importing the fuji partial into your sass/scss stylesheet:
 ```sass
 // Override the defaults as desired:
 $fuji-foreground-color: #FFF
-$fuji-text-color: rgba(#FFF, 1)
-$fuji-highlight-color: #aed582
-$fuji-max-width: 960px
-$fuji-logo-text-color: rgba($fuji-highlight-color, 0.4)
-$fuji-logo-subtext-color: rgba($fuji-highlight-color, 0.7)
-$fuji-link-color-inactive: rgba($fuji-text-color, 0.5)
-$fuji-link-color-active: rgba($highlight-color, 1)
-$fuji-font-size: inherit
+$fuji-background-color: transparent
+$fuji-column-max-width: 960px
+$fuji-logo-text-color: rgba(#aed582, 0.4)
+$fuji-logo-subtext-color: rgba(#aed582, 0.7)
+$fuji-link-color-inactive: rgba($fuji-foreground-color, 0.5)
+$fuji-link-color-active: rgba(#aed582, 1)
+$fuji-link-background-color-inactive: transparent
+$fuji-link-background-color-active: transparent
+$fuji-heading-font-size: 24px
+$fuji-nav-font-size: inherit
 
 @import "fuji"
 ```

@@ -1,13 +1,15 @@
 // Configurable Config
 $fuji-foreground-color: #FFF !default
-$fuji-text-color: rgba(#FFF, 1) !default
-$fuji-highlight-color: #aed582 !default
-$fuji-max-width: 960px !default
-$fuji-logo-text-color: rgba($fuji-highlight-color, 0.4) !default
-$fuji-logo-subtext-color: rgba($fuji-highlight-color, 0.7) !default
-$fuji-link-color-inactive: rgba($fuji-text-color, 0.5) !default
-$fuji-link-color-active: rgba($fuji-highlight-color, 1) !default
-$fuji-font-size: inherit !default
+$fuji-background-color: transparent !default
+$fuji-column-max-width: 960px !default
+$fuji-logo-text-color: rgba(#aed582, 0.4) !default
+$fuji-logo-subtext-color: rgba(#aed582, 0.7) !default
+$fuji-link-color-inactive: rgba($fuji-foreground-color, 0.5) !default
+$fuji-link-color-active: rgba(#aed582, 1) !default
+$fuji-link-background-color-inactive: transparent !default
+$fuji-link-background-color-active: transparent !default
+$fuji-heading-font-size: 24px !default
+$fuji-nav-font-size: inherit !default
 
 // Immutable Config
 $fuji-line-edge-color: rgba($fuji-foreground-color, 0)
@@ -16,6 +18,7 @@ $fuji-line-size: 40%
 
 #fuji
   +transition(all 0.2s false 0s)
+  background-color: $fuji-background-color
   float: none
   overflow: hidden
   margin-bottom: 20px
@@ -26,19 +29,22 @@ $fuji-line-size: 40%
     margin-right: auto
     position: relative
     min-width: 320px
-    max-width: $fuji-max-width
+    max-width: $fuji-column-max-width
+    overflow: hidden
 
   h1
     float: left
     margin: 0
     padding: 0
+    @media (max-width: $fuji-column-max-width)
+      margin-left: 15px
     a
       +transition(all 0.3s false 0s)
       max-width: 300px
       overflow: hidden
       font:
         family: hybrea, corbel, 'helvetica neue', helvetica, arial
-        size: 20px
+        size: $fuji-heading-font-size
         weight: normal
       color: $fuji-logo-text-color
       line-height: 36px
@@ -50,30 +56,36 @@ $fuji-line-size: 40%
 
   ul
     list-style: none
-    margin: 4px 0 0 0
+    margin: 0
     padding: 0
     float: right
     max-width: 700px
+    @media (max-width: $fuji-column-max-width)
+      // margin-right: 15px
+      display: none
     > li
       float: left
       +background-image(linear-gradient(top, $fuji-line-edge-color, $fuji-line-middle-color $fuji-line-size, $fuji-line-middle-color (100% - $fuji-line-size), $fuji-line-edge-color))
       background-position: left center
       background-repeat: no-repeat
       background-size: 1px 100%
-      font-size: $fuji-font-size
+      font-size: $fuji-nav-font-size
       margin: 0
-      padding: 0
+      padding: 0 8px
       a
-        +transition(all 0.2s false 0s)
+        +transition(all 0.3s)
         color: $fuji-link-color-inactive
+        background-color: $fuji-link-background-color-inactive
+        -webkit-border-radius: 3px
+        -moz-border-radius: 3px
+        border-radius: 3px
         display: block
-        padding: 7px 15px
+        padding: 3px 8px
         text-decoration: none
-        &:hover, &.active
-          text-decoration: underline
-          color: $fuji-link-color-inactive
-        &.em
-          color: rgba($fuji-text-color, 1)
+        &:hover, &.active, &.login
+          +transition(all 0)
+          color: $fuji-link-color-active
+          background-color: $fuji-link-background-color-active
 
         &.gravatar
           padding: 0 0 0 15px
