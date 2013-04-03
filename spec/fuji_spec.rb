@@ -18,12 +18,6 @@ describe Fuji::Header do
       h.should match /#{hash}/
     end
 
-    it "displays a login link if no heroku_session cookie is present"# do
-    #   cookies = {heroku_session: '1'}
-    #   h = Fuji::Header.render()
-    #   h.should match /#{hash}/
-    # end
-
   end
 
   describe "Fuji::Helper.current_site_matches?" do

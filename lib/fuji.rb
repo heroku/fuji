@@ -37,16 +37,8 @@ module Fuji
           {id: :documentation, name: 'Documentation', url: 'https://devcenter.heroku.com'},
           {id: :support, name: 'Support', url: 'https://help.heroku.com'},
           {id: :blog, name: 'Blog', url: 'https://blog.heroku.com'},
+          {id: :account, name: 'Account', url: "https://dashboard.heroku.com/account"}
         ]
-
-        # User
-        cookies ||= nil
-        if cookies && cookies['heroku_session'].to_i == 1
-          links << {id: :account, name: 'My Account', url: "https://dashboard.heroku.com/account"}
-          links << {id: :logout, name: 'Log Out', url: "https://dashboard.heroku.com/logout"}
-        else
-          links << {id: :login, name: 'Log In', url: "https://dashboard.heroku.com"}
-        end
 
         # Gravatar
         if options[:user] && options[:user].email
