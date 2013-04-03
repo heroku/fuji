@@ -29,8 +29,6 @@ The render method accepts a hash of options with the following defaults:
   logo_text: "heroku",
   logo_subtext: nil,                      # e.g 'dashboard' or 'add-ons'
   logo_url: "https://www.heroku.com",
-  login_path: nil,                        # if present, display login/logout links
-  logout_path: nil,
   gravatar_fallback_url: "http://assets.heroku.com.s3.amazonaws.com/addons.heroku.com/gravatar_default.png"
 }
 ```
@@ -38,7 +36,7 @@ The render method accepts a hash of options with the following defaults:
 Here's how it's done in addons:
 
 ```haml
-= Fuji::Header.render(user: current_user, logo_subtext: "addons", login_path: login_path, logout_path: logout_path)
+= Fuji::Header.render(user: current_user, logo_subtext: "addons")
 ```
 
 Style it up by importing the fuji partial into your sass/scss stylesheet:

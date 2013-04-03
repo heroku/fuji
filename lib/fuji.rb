@@ -3,17 +3,6 @@ require 'digest/md5'
 require 'uri'
 require "compass"
 
-# module Foo
-#
-#   module Header
-#     def render
-#       puts "rendered!"
-#     end
-#   end
-#   extend Header
-#
-# end
-
 module Fuji
 
   def self.render
@@ -27,6 +16,7 @@ module Fuji
   end
 
   class Header
+
     def self.render(options={})
 
       # Options
@@ -35,43 +25,43 @@ module Fuji
       options[:logo_subtext] ||= nil
       options[:logo_url] ||= "https://www.heroku.com"
       options[:user] ||= nil
-      options[:login_path] ||= nil
-      options[:logout_path] ||= nil
       options[:links] ||= nil
 
-      links = []
+      # Allow links to be overridden entirely
+      links = options[:links]
 
-      # unless options[:user]
-      #   links << {id: :how, name: 'How it Works', url: 'https://heroku.com/how'}
-      #   links << {id: :pricing, name: 'Pricing', url: 'https://www.heroku.com/pricing'}
-      # end
+      if links.nil?
+        links = [
+          {id: :apps, name: 'Apps', url: 'https://dashboard.heroku.com'},
+          {id: :addons, name: 'Add-ons', url: 'https://addons.heroku.com'},
+          {id: :documentation, name: 'Documentation', url: 'https://devcenter.heroku.com'},
+          {id: :support, name: 'Support', url: 'https://help.heroku.com'},
+          {id: :blog, name: 'Blog', url: 'https://blog.heroku.com'},
+        ]
 
-      links << {id: :apps, name: 'Apps', url: 'https://dashboard.heroku.com'}
-      links << {id: :addons, name: 'Add-ons', url: 'https://addons.heroku.com'}
-      links << {id: :documentation, name: 'Documentation', url: 'https://devcenter.heroku.com'}
-      links << {id: :support, name: 'Support', url: 'https://help.heroku.com'}
+        # User
+        cookies ||= nil
+        if cookies && cookies['heroku_session'].to_i == 1
+          links << {id: :account, name: 'My Account', url: "https://dashboard.heroku.com/account"}
+          links << {id: :logout, name: 'Log Out', url: "https://dashboard.heroku.com/logout"}
+        else
+          links << {id: :login, name: 'Log In', url: "https://dashboard.heroku.com"}
+        end
 
-      if options[:user] && options[:logout_path]
-        links << {id: :logout, name: 'Log out', url: options[:logout_path]}
-      end
-
-      # Gravatar
-      if options[:user] && options[:user].email
-        gravatar_url = [
-          "https://secure.gravatar.com/avatar/",
-          Digest::MD5.hexdigest(options[:user].email),
-          "?default=",
-          URI.escape(options[:gravatar_fallback_url])
-        ].join("")
-        links << {
-          id: :gravatar,
-          name: Fuji::Helper.image_tag(gravatar_url),
-          url: 'https://dashboard.heroku.com/account'
-        }
-      end
-
-      if options[:login_path] && options[:user].nil?
-        links << {id: :login, name: 'Log in', url: options[:login_path]}
+        # Gravatar
+        if options[:user] && options[:user].email
+          gravatar_url = [
+            "https://secure.gravatar.com/avatar/",
+            Digest::MD5.hexdigest(options[:user].email),
+            "?default=",
+            URI.escape(options[:gravatar_fallback_url])
+          ].join("")
+          links << {
+            id: :gravatar,
+            name: Fuji::Helper.image_tag(gravatar_url),
+            url: 'https://dashboard.heroku.com/account'
+          }
+        end
       end
 
       # Join links together
@@ -133,5 +123,3 @@ module Fuji
   end
 
 end
-
-# ActionView::Base.send :include, Fuji::ViewHelpers if defined?(ActionView)
