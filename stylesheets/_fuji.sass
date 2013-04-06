@@ -1,19 +1,20 @@
 // Configurable Config
 
-$fuji-foreground-color: #FFF !default
-$fuji-background-color: transparent !default
+$fuji-foreground-color: #8B8BB2 !default
+$fuji-background-color: #1B1B24 !default
 
-$fuji-max-width: 960px !default
+$fuji-max-width: 1032px !default
 $fuji-horizontal-padding: 12px !default
 $fuji-vertical-padding: 2em !default
 
-$fuji-logo-text-color: rgba(#aed582, 0.4) !default
-$fuji-logo-subtext-color: rgba(#aed582, 0.7) !default
+$fuji-logo-text-color: $fuji-foreground-color !default
+$fuji-logo-subtext-color: rgba($fuji-foreground-color, 0.6) !default
 
-$fuji-link-color-inactive: rgba($fuji-foreground-color, 0.5) !default
-$fuji-link-color-active: rgba(#aed582, 1) !default
+$fuji-link-color-inactive: #7C76B8 !default
+$fuji-link-color-active: $fuji-background-color !default
+
 $fuji-link-background-color-inactive: transparent !default
-$fuji-link-background-color-active: transparent !default
+$fuji-link-background-color-active: $fuji-link-color-inactive !default
 
 $fuji-base-font-size: inherit !default
 $fuji-logo-font-size: 1.71em !default
@@ -23,7 +24,7 @@ $fuji-border-radius: 3px !default
 // Immutable Config
 
 $fuji-line-edge-color: transparent
-$fuji-line-middle-color: rgba($fuji-foreground-color, 0.1)
+$fuji-line-middle-color: rgba($fuji-foreground-color, 0.2)
 $fuji-line-size: 40%
 
 // Import Hybrea
@@ -73,7 +74,7 @@ $fuji-line-size: 40%
 
     list-style: none
 
-    @media (max-width: $fuji-column-max-width)
+    @media (max-width: $fuji-max-width)
       display: none
 
     > li
@@ -112,5 +113,11 @@ $fuji-line-size: 40%
             width: 32px
 
             +border-radius(1000px)
+
       &:first-child
+        padding-left: 0
+
         background-image: none
+
+      &:last-child
+        padding-right: 0
