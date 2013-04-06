@@ -74,9 +74,6 @@ $fuji-line-size: 40%
 
     list-style: none
 
-    @media (max-width: $fuji-max-width)
-      display: none
-
     > li
       float: left
       padding: 0 0.57em
@@ -86,6 +83,14 @@ $fuji-line-size: 40%
         position: left center
         repeat: no-repeat
         size: 1px 100%
+
+      @media (max-width: $fuji-max-width)
+        display: none
+
+        background: none
+
+        &:last-child
+          display: block
 
       a
         display: block
