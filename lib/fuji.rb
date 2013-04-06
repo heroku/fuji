@@ -1,7 +1,7 @@
-require "fuji/version"
+require 'fuji/version'
 require 'digest/md5'
 require 'uri'
-require "compass"
+require 'compass'
 
 module Fuji
 
@@ -11,8 +11,10 @@ module Fuji
 
   # This makes a sass partial available to your app: @import "fuji"
   class Style
+
     base_directory  = File.join(File.dirname(__FILE__), '..')
     Compass::Frameworks.register('fuji', :path => base_directory)
+
   end
 
   class Header
@@ -64,13 +66,14 @@ module Fuji
       # Prepare the HTML output
       out = "
         <div id='fuji' class='fuji'>
-          <div class='container'>
-            <h1>
-              <a href='#{options[:logo_url]}'>
-                #{options[:logo_text]}<span>#{options[:logo_subtext]}</span>
+          <div class='fuji-container'>
+            <h1 class='fuji-brand'>
+              <a class='fuji-logo' href='#{options[:logo_url]}'>
+                #{options[:logo_text]} <span class='fuji-logo-subtext'>#{options[:logo_subtext]}</span>
               </a>
             </h1>
-            <ul>#{links}</ul>
+
+            <ul class='fuji-links'>#{links}</ul>
           </div>
         </div>
       "
