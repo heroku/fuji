@@ -2,10 +2,10 @@
 require File.expand_path('../lib/fuji/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Zeke Sikelianos"]
-  gem.email         = ["zeke@sikelianos.com"]
-  gem.description   = %q{heroku's site header}
-  gem.summary       = %q{heroku's site header}
+  gem.authors       = ["Zeke Sikelianos, Max Schoening"]
+  gem.email         = ["zeke@sikelianos.com, mschoening@me.com"]
+  gem.description   = %q{Heroku's site header}
+  gem.summary       = %q{Heroku's site header}
   gem.homepage      = "https://github.com/heroku/fuji"
 
   gem.files         = `git ls-files`.split($\)
@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'rake'
-  
+
   gem.add_dependency "compass"
   gem.add_dependency "sass"
 end
