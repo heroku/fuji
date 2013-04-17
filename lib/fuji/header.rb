@@ -1,22 +1,27 @@
 class Fuji
   class Header
 
+    ADDONS = Link.new("Add-ons", "https://addons.heroku.com")
+    DOCUMENTATION = Link.new("Documentation", "https://devcenter.heroku.com")
+    HELP = Link.new("Help & Support", "https://help.heroku.com", {css: "help"})
+
     LOGGED_IN = [
-      {id: :apps, name: 'Apps', url: 'https://dashboard.heroku.com'},
-      {id: :addons, name: 'Add-ons', url: 'https://addons.heroku.com'},
-      {id: :documentation, name: 'Documentation', url: 'https://devcenter.heroku.com'},
-      {id: :support, name: 'Help & Support', url: 'https://help.heroku.com'},
-      {id: :account, name: 'Account', url: "https://dashboard.heroku.com/account"},
-      {id: :account, name: 'Log Out', url: "https://id.heroku.com/logout"}
+      Link.new("Apps", "https://dashboard.heroku.com"),
+      ADDONS,
+      DOCUMENTATION,
+      HELP,
+      Link.new("Account", "https://dashboard.heroku.com/account"),
+      Link.new("Log Out", "https://id.heroku.com/logout")
     ]
 
     LOGGED_OUT = [
-      {id: :signup, name: 'Sign Up', url: 'https://www.heroku.com/signup'},
-      {id: :pricing, name: 'Pricing', url: 'https://www.heroku.com/pricing'},
-      {id: :how, name: 'How It Works', url: 'https://www.heroku.com/how'},
-      {id: :documentation, name: 'Documentation', url: 'https://devcenter.heroku.com'},
-      {id: :support, name: 'Help & Support', url: 'https://help.heroku.com'},
-      {id: :login, name: 'Login', url: "https://id.heroku.com/login"}
+      Link.new("Sign Up", "https://www.heroku.com/signup"),
+      Link.new("Pricing", "https://www.heroku.com/pricing"),
+      Link.new("How it Works", "https://www.heroku.com/how"),
+      ADDONS,
+      DOCUMENTATION,
+      HELP,
+      Link.new("Login", "https://id.heroku.com/login")
     ]
 
     def self.render(options={})
@@ -26,39 +31,13 @@ class Fuji
       options[:logo_subtext] ||= nil
       options[:logo_url] ||= "https://www.heroku.com"
       options[:user] ||= nil
-      options[:links] ||= nil
 
-      # TODO: deprecate this
-      # Allow links to be overridden entirely
-      links = Fuji.logged_in? ? Fuji::Header::LOGGED_IN : Fuji::Header::LOGGED_OUT
-      if options[:links]
-        links = options[:links]
-      end
+      links = Fuji.logged_in? ? LOGGED_IN : LOGGED_OUT
 
-      # # Gravatar
-      # if options[:user] && options[:user].email
-      #   gravatar_url = [
-      #     "https://secure.gravatar.com/avatar/",
-      #     Digest::MD5.hexdigest(options[:user].email),
-      #     "?default=",
-      #     URI.escape(options[:gravatar_fallback_url])
-      #   ].join("")
-      #   links << {
-      #     id: :gravatar,
-      #     name: Fuji::Helper.image_tag(gravatar_url),
-      #     url: 'https://dashboard.heroku.com/account'
-      #   }
-      # end
-      # end
+      # Build HTML from link objects
+      links = links.map{|l| l.html(options[:local]) }.join("\n")
 
-      # Join links together
-      links = links.map do |link|
-        url = link[:url]
-        url = url.sub(options[:local][:from], options[:local][:to]) if options[:local]
-        Fuji::Helper.link_to(link[:name], url, link[:id])
-      end.join("\n")
-
-      # Prepare the HTML output
+      # Build HTML wrapper
       out = "
         <div id='fuji' class='fuji'>
           <div class='fuji-container'>
