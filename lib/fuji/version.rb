@@ -1,3 +1,3 @@
-module Fuji
-  VERSION = "0.1.5"
+class Fuji
+  VERSION = "0.2.0"
 end
