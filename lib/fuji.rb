@@ -13,11 +13,6 @@ class Fuji
 
   cattr_accessor :request
 
-  # FIXME: Why not just call Fuji::Header.render in the view?
-  def self.render
-    Fuji::Header.render
-  end
-
   def self.fullpath
     self.request[:fullpath]
   end
