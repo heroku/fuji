@@ -2,6 +2,7 @@ Fuji
 ====
 
 [![Build Status](https://travis-ci.org/heroku/fuji.png?branch=master)](https://travis-ci.org/heroku/fuji)
+[![Code Climate](https://codeclimate.com/github/heroku/fuji.png)](https://codeclimate.com/github/heroku/fuji)
 
 Fuji is a ruby gem for rendering and styling Heroku's global header and nav.
 
