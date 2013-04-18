@@ -2,25 +2,25 @@ class Fuji
   class Renderer
 
     def self.render request
-      self.new(request)._render
+      self.new(request).render
     end
 
     def initialize request
       @request = request
     end
 
-  private
-
-    def _render
-      raise "Unimplemented"
+    def render
+      raise Exception.new("Unimplemented")
     end
 
+  private
+
     def logged_in?
-      @request.cookies.fetch("heroku_session", false)
+      cookies = @request.cookies
+      cookies ? cookies.fetch("heroku_session", false) : false
     end
 
     def current_page
-      "#{@request.env["rack.url_scheme"]}://#{@request.env["HTTP_HOST"]}#{@request.fullpath}"
       @request.url
     end
 

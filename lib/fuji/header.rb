@@ -24,7 +24,7 @@ class Fuji
       Link.new("Login", "https://id.heroku.com/login")
     ]
 
-    def _render
+    def render
       # Choose proper link set
       links = logged_in? ? LOGGED_IN : LOGGED_OUT
 

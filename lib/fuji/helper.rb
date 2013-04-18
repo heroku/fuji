@@ -2,7 +2,7 @@ class Fuji
   class Helper
 
     def self.dehumanize string
-      string.downcase.squish.gsub( /\s/, '-' )
+      string.downcase.gsub(/\W+/, '-')
     end
 
   end
