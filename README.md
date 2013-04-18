@@ -1,6 +1,8 @@
 Fuji
 ====
 
+[![Build Status](https://travis-ci.org/heroku/fuji.png?branch=master)](https://travis-ci.org/heroku/fuji)
+
 Fuji is a ruby gem for rendering and styling Heroku's global header and nav.
 
 Its only dependencies are Sass and Compass, so you can use it with Rails or Sinatra.
