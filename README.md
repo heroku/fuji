@@ -14,21 +14,47 @@ Add fuji to your application's Gemfile:
 gem 'fuji'
 ```
 
+And render a section (in this case, the header) by calling render and passing the Rack::Request object to it:
+
 ```erb
-<%= Fuji::Header.render %>
+<%= Fuji::Header.render request %>
 ```
 
-The render method accepts a hash of options with the following defaults:
+Config
+------
+
+You can set global Fuji config options that affect all rendered sections.
+
+### Rails
+
+When using Rails, you can specify Fuji's config in your application's environment configuration: 
 
 ```ruby
-{
-  user: nil,                              # if present, show gravatar
-  logo_text: "heroku",
-  logo_subtext: nil,                      # e.g 'dashboard' or 'add-ons'
-  logo_url: "https://www.heroku.com",
-  gravatar_fallback_url: "http://assets.heroku.com.s3.amazonaws.com/addons.heroku.com/gravatar_default.png"
-}
+config.fuji_options = {logo_text: "heroku", logo_subtext: "dashboard"}
 ```
+
+### Ruby
+
+```ruby
+Fuji.options = {logo_text: "heroku", logo_subtext: "dashboard"}
+```
+
+### Default Options
+
+* `logo_text`: The text output first in the logo (default: "heroku")
+* `logo_subtext`: Text output second in the logo e.g. 'dashboard' or 'add-ons' (default: "")
+* `logo_url`: URL linked to from the logo (default: "https://www.heroku.com") 
+* `map`: Optional hash containing keys `:from` and `:to` which substitutes URLs in navigation with the specified `:to` string. For example:
+
+  ```ruby
+  # development.rb
+  config.fuji_options = {map: {from: "https://www.heroku.com", to: "http://localhost:5000"}}
+  ```
+
+  Will modify all links to www.heroku.com to point to localhost:5000, including correctly tracking active page state on an app running locally.
+
+Stlyes
+------
 
 Style it up by importing the fuji partial into your Sass/SCSS stylesheet:
 
