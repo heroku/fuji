@@ -4,21 +4,26 @@ require 'compass'
 
 require 'fuji/link'
 require 'fuji/helper'
+require 'fuji/renderer'
 require 'fuji/header'
 require 'fuji/style'
-require 'fuji/middleware'
+require 'fuji/railtie' if defined?(Rails)
 require 'fuji/version'
 
 class Fuji
+  DEFAULTS = {
+    logo_text: "heroku",
+    logo_subtext: "",
+    logo_url: "https://www.heroku.com",
+  }
+  
+  class << self
 
-  cattr_accessor :request
+    def options= options
+      @options = DEFAULTS.merge(options)
+    end
 
-  def self.fullpath
-    self.request[:fullpath]
+    def options; @options || DEFAULTS; end
+
   end
-
-  def self.logged_in?
-    self.request[:logged_in] || false
-  end
-
 end

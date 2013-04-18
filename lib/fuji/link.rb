@@ -7,30 +7,34 @@ class Fuji
       @options = options
     end
 
-    def html local = nil
-      url = local ? localize(@url, local) : @url
+    def html current_page
+      local = nil
+      url = localize @url
 
       @options[:css] ||= Fuji::Helper.dehumanize(@label)
       css_class = [@options[:css]]
-      css_class << "active" if current_page?(url) 
+      css_class << "active" if current_page?(url, current_page) 
       "<li><a href='#{url}' class='#{css_class.join(" ")}'>#{@label}</a></li>"
     end
 
   private
 
-    def localize url, local
-      url.sub(local[:from], local[:to])
+    def localize url
+      if mapping = Fuji.options[:map]
+        url.sub(mapping[:from], mapping[:to])
+      else
+        url
+      end
     end
 
-    def current_page?(url)
+    def current_page?(url, current)
       link = URI.parse(url.to_s)
-      request = URI.parse(Fuji.fullpath.to_s)
+      request = URI.parse(current)
 
-      if ["", "/"].include? link.path
-        link.host == request.host
-      else
-        link == request
-      end
+      request.query = nil       unless link.query
+      request.path  = link.path if      ["", "/"].include? link.path
+
+      link == request
     end
 
   end

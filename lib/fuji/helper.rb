@@ -5,9 +5,5 @@ class Fuji
       string.downcase.squish.gsub( /\s/, '-' )
     end
 
-    def self.image_tag(url)
-      "<img src='#{url}'>"
-    end
-
   end
 end
