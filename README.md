@@ -14,10 +14,26 @@ Add fuji to your application's Gemfile:
 gem 'fuji'
 ```
 
-And render a section (in this case, the header) by calling render and passing the Rack::Request object to it:
+And render a section by calling `render` and passing it the `Rack::Request` object, and any required options.
+
+### Heroku Header
+
+![](http://f.cl.ly/items/1k0K312k2z3B0e1w3l3z/fuji-header.png)
+
+The Heroku header renders the default Heroku navgation, including checking whether a user is logged in or logged out.
 
 ```erb
 <%= Fuji::Header.render request %>
+```
+
+### Custom Header
+
+![](http://f.cl.ly/items/1K0r0u1E1F2b2k260R0E/fuji-custom-header.png)
+
+The custom header allows you to specify a set of links to render instead of the default Heroku navigation. This header will make use of any information about the user's state.
+
+```erb
+<%= Fuji::CustomHeader.render request, [Fuji::Link.new("My Link", "http://example.com")] %>
 ```
 
 Config
