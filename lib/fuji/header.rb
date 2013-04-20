@@ -25,15 +25,12 @@ class Fuji
     ]
 
     def render
-      # Choose proper link set
-      links = logged_in? ? LOGGED_IN : LOGGED_OUT
-
       # Build HTML from link objects
-      links = links.map{|l| l.html(current_page) }.join("\n")
+      link_html = links.map{|l| l.html(current_page) }.join("\n")
 
       # Build HTML wrapper
       out = "
-        <div id='fuji' class='fuji'>
+        <div class='fuji #{css_class}'>
           <div class='fuji-container'>
             <h1 class='fuji-brand'>
               <a class='fuji-logo' href='#{Fuji.options[:logo_url]}'>
@@ -41,13 +38,23 @@ class Fuji
               </a>
             </h1>
 
-            <ul class='fuji-links'>#{links}</ul>
+            <ul class='fuji-links'>#{link_html}</ul>
           </div>
         </div>
       "
 
       # If we're in Rails, make it HTML safe
       out.respond_to?(:html_safe) ? out.html_safe : out
+    end
+
+  private
+
+    def css_class
+      "fuji-header"
+    end
+
+    def links
+      logged_in? ? LOGGED_IN : LOGGED_OUT
     end
 
   end

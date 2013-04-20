@@ -1,12 +1,13 @@
 class Fuji
   class Renderer
 
-    def self.render request
-      self.new(request).render
+    def self.render request, options = {}
+      self.new(request, options).render
     end
 
-    def initialize request
+    def initialize request, options = {}
       @request = request
+      @options = options
     end
 
     def render

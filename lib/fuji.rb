@@ -6,6 +6,7 @@ require 'fuji/link'
 require 'fuji/helper'
 require 'fuji/renderer'
 require 'fuji/header'
+require 'fuji/custom_header'
 require 'fuji/style'
 require 'fuji/railtie' if defined?(Rails)
 require 'fuji/version'
