@@ -34,14 +34,6 @@ describe Fuji::Header do
     html.should match "a class='fuji-logo' href='#{link}'"
   end
 
-  it "renders the logo url from options" do
-    link = "http://fujiheader.com"
-    Fuji.options = {logo_url: link}
-
-    html = Fuji::Header.render OpenStruct.new
-    html.should match "a class='fuji-logo' href='#{link}'"
-  end
-
   it "renders the logo text from options" do
     text = "My Title"
     Fuji.options = {logo_text: text}
@@ -50,7 +42,7 @@ describe Fuji::Header do
     html.should match text
   end
 
-  it "renders the logo text from options" do
+  it "renders the logo subtext from options" do
     text = "My Subtitle"
     Fuji.options = {logo_subtext: text}
 
