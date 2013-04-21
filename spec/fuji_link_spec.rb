@@ -5,9 +5,17 @@ describe Fuji::Link do
   describe "#html" do
     it "builds a link tag with default options" do
       link = Fuji::Link.new("My Link", "http://example.com")
-      html = link.html
+      link.html.should match "a href='http://example.com'"
+    end
 
-      html.should match "a href='http://example.com'"
+    it "defaults to a dasherized css class based on the link title" do
+      link = Fuji::Link.new("My Link", "http://example.com")
+      link.html.should match "a href='http://example.com' class='my-link'"
+    end
+
+    it "accepts a custom css class string" do
+      link = Fuji::Link.new("My Link", "http://example.com", css: "custom")
+      link.html.should match "a href='http://example.com' class='custom'"
     end
   end
 
