@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fuji (0.2.0)
+    fuji (0.2.1)
       compass
       sass
 

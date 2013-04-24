@@ -1,6 +1,6 @@
 class Fuji
   class Header < Renderer
-    
+
     ADDONS = Link.new("Add-ons", "https://addons.heroku.com")
     DOCUMENTATION = Link.new("Documentation", "https://devcenter.heroku.com")
     HELP = Link.new("Help & Support", "https://help.heroku.com", {css: "help"})
@@ -17,7 +17,6 @@ class Fuji
     LOGGED_OUT = [
       Link.new("Sign Up", "https://www.heroku.com/signup"),
       Link.new("Pricing", "https://www.heroku.com/pricing"),
-      Link.new("How it Works", "https://www.heroku.com/how"),
       ADDONS,
       DOCUMENTATION,
       HELP,
