@@ -2,7 +2,7 @@
 require File.expand_path('../lib/fuji/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Zeke Sikelianos", "Max Shoening", "Dominic Dagradi"]
+  gem.authors       = ["Zeke Sikelianos", "Max Schoening", "Dominic Dagradi"]
   gem.email         = ["zeke@heroku.com", "max@heroku.com", "dominic@heroku.com"]
   gem.description   = %q{Heroku's site header}
   gem.summary       = %q{Heroku's site header}
