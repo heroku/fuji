@@ -8,13 +8,16 @@ class Fuji
     end
 
     def html current_page = nil
-      local = nil
       url = mapping @url
 
       @options[:css] ||= Fuji::Helper.dehumanize(@label)
       css_class = [@options[:css]]
-      css_class << "active" if current_page && current_page?(url, current_page) 
-      "<li><a href='#{url}' class='#{css_class.join(" ")}'>#{@label}</a></li>"
+      css_class << "active" if current_page && current_page?(url, current_page)
+
+      output = "<a href='#{url}' class='#{css_class.join(" ")}'>#{@label}</a>"
+      output = "<li>#{output}</li>" unless @options[:skip_li]
+
+      output
     end
 
   private
