@@ -15,9 +15,9 @@ class Fuji
   DEFAULTS = {
     logo_text: "heroku",
     logo_subtext: "",
-    logo_url: "https://www.heroku.com",
+    logo_url: "https://www.heroku.com/",
   }
-  
+
   class << self
 
     def options= options

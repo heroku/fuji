@@ -1,12 +1,12 @@
 class Fuji
   class Header < Renderer
 
-    ADDONS = Link.new("Add-ons", "https://addons.heroku.com")
-    DOCUMENTATION = Link.new("Documentation", "https://devcenter.heroku.com")
-    HELP = Link.new("Help & Support", "https://help.heroku.com", {css: "help"})
+    ADDONS = Link.new("Add-ons", "https://addons.heroku.com/")
+    DOCUMENTATION = Link.new("Documentation", "https://devcenter.heroku.com/")
+    HELP = Link.new("Help & Support", "https://help.heroku.com/", {css: "help"})
 
     LOGGED_IN = [
-      Link.new("Apps", "https://dashboard.heroku.com"),
+      Link.new("Apps", "https://dashboard.heroku.com/"),
       ADDONS,
       DOCUMENTATION,
       HELP,
@@ -27,14 +27,14 @@ class Fuji
       # Build HTML from link objects
       link_html = links.map{|l| l.html(current_page) }.join("\n")
 
+      home = Link.new("#{Fuji.options[:logo_text]} <span class='fuji-logo-subtext'>#{Fuji.options[:logo_subtext]}</span>", Fuji.options[:logo_url], {css: "fuji-logo", skip_li: true})
+
       # Build HTML wrapper
       out = "
         <div class='fuji #{css_class}'>
           <div class='fuji-container'>
             <h1 class='fuji-brand'>
-              <a class='fuji-logo' href='#{Fuji.options[:logo_url]}'>
-                #{Fuji.options[:logo_text]} <span class='fuji-logo-subtext'>#{Fuji.options[:logo_subtext]}</span>
-              </a>
+              #{home.html}
             </h1>
 
             <ul class='fuji-links'>#{link_html}</ul>
