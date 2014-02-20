@@ -4,6 +4,8 @@ Fuji
 [![Build Status](https://travis-ci.org/heroku/fuji.png?branch=master)](https://travis-ci.org/heroku/fuji)
 [![Code Climate](https://codeclimate.com/github/heroku/fuji.png)](https://codeclimate.com/github/heroku/fuji)
 
+**Do not use. This has been replaced by [fuji.js](https://github.com/heroku/fuji.js)**
+
 Fuji is a ruby gem for rendering and styling Heroku's global header and nav.
 
 Its only dependencies are Sass and Compass, so you can use it with Rails or Sinatra.
